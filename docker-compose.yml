@@ -1,0 +1,27 @@
+services:
+  cassandra:
+    image: cassandra:4.1
+    container_name: airbnb_cassandra
+    restart: unless-stopped
+    ports:
+      # Native transport port bound strictly to localhost for safety
+      - "127.0.0.1:9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=AirbnbCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - MAX_HEAP_SIZE=1024M
+      - HEAP_NEWSIZE=256M
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+      - ./cassandra/schema.cql:/docker-entrypoint-initdb.d/schema.cql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -e 'DESCRIBE KEYSPACES;' 127.0.0.1 9042 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 40s
+
+volumes:
+  cassandra_data:
+    driver: local

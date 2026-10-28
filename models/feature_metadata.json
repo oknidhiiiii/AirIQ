@@ -1,0 +1,20 @@
+{
+  "cities": [
+    "London",
+    "Paris",
+    "Rome",
+    "Tokyo",
+    "New York City",
+    "Sydney",
+    "Bengaluru",
+    "Amsterdam",
+    "Mumbai"
+  ],
+  "room_types": [
+    "Entire home/apt",
+    "Private room",
+    "Entire home/flat",
+    "Hotel room",
+    "Shared room"
+  ]
+}
