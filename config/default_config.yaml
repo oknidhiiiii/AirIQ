@@ -1,0 +1,39 @@
+# AirIQ Central Configuration Specification
+
+dataset:
+  city: "new-york"
+  url: "https://data.insideairbnb.com/united-states/ny/new-york-city/2026-06-14/data/listings.csv.gz"
+  raw_filename: "listings.csv.gz"
+  metadata_filename: "listings_metadata.json"
+
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  output_dir: "data/outputs"
+  analytics_dir: "data/processed/analytics"
+  models_dir: "data/outputs/models"
+  metrics_dir: "data/outputs/metrics"
+
+spark:
+  app_name: "AirIQ-Engine"
+  master: "local[8]"
+  driver_memory: "4g"
+  executor_memory: "4g"
+  shuffle_partitions: 8
+  log_level: "WARN"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s - %(message)s"
+
+validation:
+  allowed_null_rate_critical: 0.0
+  allowed_null_rate_important: 0.20
+  bounds:
+    latitude_min: 40.4
+    latitude_max: 40.9
+    longitude_min: -74.3
+    longitude_max: -73.6
+    accommodates_min: 1
+    accommodates_max: 16
+    price_min: 0.01

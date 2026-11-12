@@ -39,9 +39,13 @@ yarn-debug.log*
 yarn-error.log*
 
 # Datasets and Models
-data/raw/
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/listings_metadata.json
 data/processed/*
 !data/processed/.gitkeep
+data/outputs/*
+!data/outputs/.gitkeep
 dataset
 models/spark_rf_model/
 !models/feature_metadata.json
